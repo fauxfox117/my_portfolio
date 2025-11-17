@@ -21,55 +21,60 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden">
-      {/* Animated Background - Circles like Federico's */}
+      {/* Animated Background Circles - Now Moving Randomly */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
+        {/* Circle 1 - Moves in a figure-8 pattern */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
-          }}
+          className="absolute w-96 h-96 rounded-full circle-gradient-1"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            x: [0, 200, 0, -200, 0],
+            y: [0, -100, 200, -100, 0],
+            scale: [1, 1.2, 1, 1.3, 1],
+            opacity: [0.3, 0.5, 0.4, 0.5, 0.3],
           }}
           transition={{
-            duration: 8,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ left: "20%", top: "20%" }}
         />
+
+        {/* Circle 2 - Drifts diagonally */}
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)",
-          }}
+          className="absolute w-[500px] h-[500px] rounded-full circle-gradient-2"
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
+            x: [0, -150, 100, -50, 0],
+            y: [0, 150, -100, 50, 0],
+            scale: [1.2, 1, 1.4, 1.1, 1.2],
+            opacity: [0.2, 0.4, 0.3, 0.4, 0.2],
           }}
           transition={{
-            duration: 10,
+            duration: 25,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ right: "15%", bottom: "15%" }}
         />
+
+        {/* Circle 3 - Orbits around center */}
         <motion.div
-          className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full"
+          className="absolute w-64 h-64 rounded-full circle-gradient-3"
+          animate={{
+            x: [0, 150, 0, -150, 0],
+            y: [0, -150, 0, 150, 0],
+            scale: [1, 1.3, 1.2, 1.4, 1],
+            opacity: [0.4, 0.2, 0.5, 0.3, 0.4],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           style={{
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)",
+            left: "50%",
+            top: "50%",
             transform: "translate(-50%, -50%)",
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.2, 0.4],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
           }}
         />
       </div>
@@ -85,6 +90,14 @@ function App() {
         >
           Steven Bolin
         </motion.h1>
+        <motion.h2
+          className="text-2xl md:text-3xl font-semibold text-white mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Full-Stack Software Engineer
+        </motion.h2>
 
         {/* Loading Bar Container */}
         <motion.div
@@ -96,12 +109,29 @@ function App() {
           <div className="relative w-full h-2 bg-black border border-white/20 rounded-full overflow-hidden">
             <motion.div
               className="absolute left-0 top-0 h-full bg-white"
-              style={{
-                width: `${progress}%`,
-              }}
-              transition={{
-                duration: 0.1,
-              }}
+              animate={
+                progress >= 90
+                  ? {
+                      width: "90%",
+                      opacity: [1, 0.3, 1],
+                    }
+                  : {
+                      width: `${progress}%`,
+                    }
+              }
+              transition={
+                progress >= 90
+                  ? {
+                      opacity: {
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    }
+                  : {
+                      duration: 0.1,
+                    }
+              }
             />
           </div>
 
@@ -119,7 +149,7 @@ function App() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <p>Upstate SC</p>
+        <p>Greenville SC</p>
       </motion.div>
 
       <motion.div
