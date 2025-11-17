@@ -1,12 +1,11 @@
+import React from "react";
+import reactDom from "react-dom/client";
+
 import "./Main.css";
+import "./index.css";
 
 function Main() {
-  return (
-    <div className="container">
-      <p>This is your first Vite project</p>
-      <p>"Vite" means "quick" in French</p>
-    </div>
-  );
+  return <div className="container"></div>;
 }
 
 export default Main;
