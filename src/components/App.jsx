@@ -82,7 +82,7 @@ function App() {
               "radial-gradient(circle, rgba(138, 73, 255, 0.3) 0%, transparent 70%)",
             filter: "blur(50px)",
             right: "30%",
-            bottom: "30%"
+            bottom: "30%",
           }}
           animate={{
             x: [0, -150, 100, -50, 0],
