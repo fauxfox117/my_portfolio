@@ -81,6 +81,8 @@ function App() {
             background:
               "radial-gradient(circle, rgba(138, 73, 255, 0.3) 0%, transparent 70%)",
             filter: "blur(50px)",
+            right: "30%",
+            bottom: "30%"
           }}
           animate={{
             x: [0, -150, 100, -50, 0],
@@ -93,7 +95,6 @@ function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          style={{ right: "30%", bottom: "30%" }}
         />
       </div>
 
@@ -112,8 +113,7 @@ function App() {
 
         <motion.h3
           className="text-2xl md:text-1xl text-black mb-16 text-center"
-          style={{ fontFamily: "Lato, sans-serif" }}
-          fontStyle={{ fontWeight: "100" }}
+          style={{ fontFamily: "Lato, sans-serif", fontWeight: "300" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
