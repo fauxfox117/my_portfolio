@@ -102,7 +102,7 @@ function App() {
       <div className="relative z-10 w-full max-w-xl px-8">
         {/* Name */}
         <motion.h1
-          className="text-6xl md:text-7xl mb-16 text-center"
+          className="text-6xl md:text-7xl mb-16 text-center text-gray-800 drop-shadow-sm"
           style={{ fontFamily: "Nabla, cursive" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,13 +112,13 @@ function App() {
         </motion.h1>
 
         <motion.h3
-          className="text-2xl md:text-1xl text-black mb-16 text-center"
+          className="text-2xl md:text-1xl text-gray-700 mb-16 text-center drop-shadow-sm"
           style={{ fontFamily: "Lato, sans-serif", fontWeight: "300" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Full-Stack Software Engineer
+          Full-Stack Software Developer
         </motion.h3>
 
         {/* Loading Bar Container */}
@@ -128,9 +128,9 @@ function App() {
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           {/* Progress Bar */}
-          <div className="relative w-full h-2 bg-white/50 border border-black/10 rounded-full overflow-hidden backdrop-blur-sm">
+          <div className="relative w-full h-2 bg-white/70 border border-gray-300/30 rounded-full overflow-hidden backdrop-blur-sm shadow-sm">
             <motion.div
-              className="absolute left-0 top-0 h-full bg-black"
+              className="absolute left-0 top-0 h-full bg-gray-700"
               animate={
                 progress >= 90
                   ? {
@@ -159,14 +159,16 @@ function App() {
 
           {/* Percentage */}
           <div className="flex justify-end mt-4">
-            <span className="text-black/60 text-sm font-mono">{progress}%</span>
+            <span className="text-gray-600 text-sm font-mono drop-shadow-sm">
+              {progress}%
+            </span>
           </div>
         </motion.div>
       </div>
 
       {/* Bottom Corner Text */}
       <motion.div
-        className="absolute bottom-8 left-8 text-sm text-black/40"
+        className="absolute bottom-8 left-8 text-sm text-gray-600 drop-shadow-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
@@ -175,7 +177,7 @@ function App() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-8 right-8 text-sm text-black/40"
+        className="absolute bottom-8 right-8 text-sm text-gray-600 drop-shadow-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
