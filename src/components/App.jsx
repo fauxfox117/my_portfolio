@@ -11,10 +11,10 @@ import {
 import { wrap } from "@motionone/utils";
 import "./App.css";
 
-import WTWRImage from "../assets/WTWR.svg";
-import AMPImage from "../assets/AMP.svg";
-import ScoundrelImage from "../assets/Scoundrel.svg";
-import ProfileImage from "../assets/me.svg";
+import WTWRImage from "../assets/WTWR.png";
+import AMPImage from "../assets/AMP.png";
+import ScoundrelImage from "../assets/Scoundrel.png";
+import ProfileImage from "../assets/me.png";
 
 // Parallax Text Component
 function ParallaxText({ children, baseVelocity = 100 }) {
