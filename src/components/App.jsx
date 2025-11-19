@@ -96,7 +96,11 @@ function App() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    ["rgb(255, 240, 245)", "rgb(240, 248, 255)", "rgb(255, 250, 240)"]
+    [
+      "rgba(255, 152, 186, 1)",
+      "rgba(156, 204, 246, 1)",
+      "rgba(35, 231, 218, 1)",
+    ]
   );
 
   // Circle colors
@@ -182,13 +186,13 @@ function App() {
       title: "Irick Images",
       description: "Irick Images photography portfolio site",
       image:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+        "https://images.squarespace-cdn.com/content/v1/599e2da937c581435a2b791a/1730946165882-GWKCRMNLIL4QI0AVB3P5/IMG_2205.jpeg?format=2500w",
     },
     {
       title: "Scoundrel Website",
       description: "Site for Michelin-star restaurant",
       image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+        "https://images.squarespace-cdn.com/content/v1/6320a42605fec650debc9388/740f8261-f33e-4c46-94ae-61a846e4d7d4/SCOTableLay.JPG?format=2500w",
     },
   ];
 
@@ -281,6 +285,7 @@ function App() {
 
             <motion.h2
               className="text-2xl md:text-3xl font-semibold text-black mb-16 text-center"
+              style={{ fontFamily: "'Lato', sans-serif", fontWeight: "300" }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -324,7 +329,7 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            <p>© 2024</p>
+            <p>© 2025</p>
           </motion.div>
         </motion.div>
       )}
@@ -335,7 +340,10 @@ function App() {
           {/* Portfolio Section */}
           <div ref={portfolioRef} className="relative min-h-screen py-20">
             {/* Portfolio Title - Parallax at top */}
-            <div className="mb-20">
+            <div
+              style={{ fontFamily: "'Lato', sans-serif", fontWeight: "100" }}
+              className="mb-20"
+            >
               <ParallaxText baseVelocity={-3}>Portfolio</ParallaxText>
             </div>
 
@@ -431,7 +439,7 @@ function App() {
 
                   {/* Social Links or CTA */}
                   <motion.div
-                    className="flex gap-4 pt-6"
+                    className="flex justify-center gap-4 pt-6"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
@@ -459,6 +467,23 @@ function App() {
                 </div>
               </motion.div>
             </div>
+            <motion.div
+              className="absolute bottom-8 left-8 text-sm text-black/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              <p>Greenville SC</p>
+            </motion.div>
+
+            <motion.div
+              className="absolute bottom-8 right-8 text-sm text-black/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              <p>© 2025</p>
+            </motion.div>
           </div>
         </>
       )}
