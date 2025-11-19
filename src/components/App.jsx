@@ -62,25 +62,55 @@ function ParallaxText({ children, baseVelocity = 100 }) {
 }
 
 // Project Card Component with Hover Effect
-function ProjectCard({ title, description, image }) {
+function ProjectCard({ title, description, image, link }) {
+  const handleClick = () => {
+    if (link) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <motion.div
-      className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-black/10 cursor-pointer group"
-      whileHover={{ scale: 1.05 }}
+      className={`relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-black/10 group ${
+        link ? "cursor-pointer" : "cursor-default"
+      }`}
+      whileHover={{ scale: link ? 1.05 : 1.02 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
+      onClick={handleClick}
     >
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-video overflow-hidden flex items-center justify-center bg-gray-100">
         <motion.img
           src={image}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         />
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2 text-black">{title}</h3>
-        <p className="text-black/60">{description}</p>
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold mb-2 text-black">{title}</h3>
+            <p className="text-black/60">{description}</p>
+          </div>
+          {link && (
+            <div className="ml-4 opacity-60 group-hover:opacity-100 transition-opacity">
+              <svg
+                className="w-5 h-5 text-black"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -97,9 +127,10 @@ function App() {
     scrollYProgress,
     [0, 0.5, 1],
     [
-      "rgba(255, 152, 186, 1)",
-      "rgba(156, 204, 246, 1)",
-      "rgba(35, 231, 218, 1)",
+      // "rgba(156, 204, 246, 1)",
+      "rgba(87, 236, 216, 1)",
+      "rgba(202, 155, 250, 1)",
+      "rgba(87, 236, 216, 1)",
     ]
   );
 
@@ -173,26 +204,25 @@ function App() {
     {
       title: "WTWR",
       description: "Weather app with React, Context API, and OpenWeatherMap",
-      image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+      image: "./src/assets/WTWR.png",
     },
     {
       title: "Amp Calculator",
       description: "React Native app with TypeScript",
-      image:
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
+      image: "./src/assets/AMP.png",
     },
     {
       title: "Irick Images",
       description: "Irick Images photography portfolio site",
       image:
         "https://images.squarespace-cdn.com/content/v1/599e2da937c581435a2b791a/1730946165882-GWKCRMNLIL4QI0AVB3P5/IMG_2205.jpeg?format=2500w",
+      link: "https://irickimages.com",
     },
     {
       title: "Scoundrel Website",
-      description: "Site for Michelin-star restaurant",
-      image:
-        "https://images.squarespace-cdn.com/content/v1/6320a42605fec650debc9388/740f8261-f33e-4c46-94ae-61a846e4d7d4/SCOTableLay.JPG?format=2500w",
+      description: "Website for Michelin-star restaurant",
+      image: "./src/assets/Scoundrel.png",
+      link: "https://scoundrelgvl.com",
     },
   ];
 
@@ -339,13 +369,21 @@ function App() {
         <>
           {/* Portfolio Section */}
           <div ref={portfolioRef} className="relative min-h-screen py-20">
-            {/* Portfolio Title - Parallax at top */}
-            <div
-              style={{ fontFamily: "'Lato', sans-serif", fontWeight: "100" }}
-              className="mb-20"
+            {/* Portfolio Title */}
+            <motion.div
+              className="mb-20 text-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: false }}
             >
-              <ParallaxText baseVelocity={-3}>Portfolio</ParallaxText>
-            </div>
+              <h2
+                className="text-7xl md:text-8xl font-bold text-black"
+                style={{ fontFamily: "'Lato', sans-serif", fontWeight: "300" }}
+              >
+                Portfolio
+              </h2>
+            </motion.div>
 
             {/* Project Grid */}
             <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -353,9 +391,9 @@ function App() {
                 {projects.map((project, index) => (
                   <motion.div
                     key={project.title}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 100 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: false }}
                   >
                     <ProjectCard {...project} />
@@ -364,15 +402,62 @@ function App() {
               </div>
             </div>
 
-            {/* Tech Stack - Parallax at bottom */}
-            <div className="mt-32 space-y-8">
-              <ParallaxText baseVelocity={-4}>
-                React • Next.js • TypeScript •
-              </ParallaxText>
-              <ParallaxText baseVelocity={4}>
-                Node.js • Tailwind • Framer Motion •
-              </ParallaxText>
-            </div>
+            {/* Tech Stack */}
+            <motion.div
+              className="mt-32 text-center space-y-8"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: false }}
+            >
+              <h2
+                className="text-5xl md:text-6xl font-bold text-black mb-5"
+                style={{ fontFamily: "'Lato', sans-serif", fontWeight: "400" }}
+              >
+                Tech Stack
+              </h2>
+              <div
+                className="text-3xl md:text-2xl font-light text-black/80 space-y-4"
+                style={{ fontFamily: "'Lato', sans-serif", fontWeight: "300" }}
+              >
+                <h2
+                  className="text-5xl md:text-2xl font-bold text-black mb-5"
+                  style={{
+                    fontFamily: "'Lato', sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Frontend
+                </h2>
+                <p>
+                  React • Javascript • TypeScript • HTML5 & CSS3 • Framer Motion
+                  • Tailwind
+                </p>
+                <h2
+                  className="text-5xl md:text-2xl font-bold text-black mb-8"
+                  style={{
+                    fontFamily: "'Lato', sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Backend
+                </h2>
+                <p>
+                  Node.js • Express.js • RESTful API Development •
+                  Authentication & Role-based permissions
+                </p>
+                <h2
+                  className="text-5xl md:text-2xl font-bold text-black mb-8"
+                  style={{
+                    fontFamily: "'Lato', sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Databases
+                </h2>
+                <p>MongoDB • Mongoose ORM</p>
+              </div>
+            </motion.div>
           </div>
 
           {/* About Section */}
@@ -424,15 +509,33 @@ function App() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: false }}
                   >
+                    <p>Hey, I'm Steven Bolin!</p>
                     <p>
-                      Hey! I'm Steven, a Full-Stack Software Developer actively
-                      looking for my first role in tech.
+                      A software engineer and web designer based in South
+                      Carolina, specializing in building clean, secure, and
+                      intuitive digital experiences.
                     </p>
                     <p>
-                      I specialize in React, Next.js, Node.js, and TypeScript.
-                      When I'm not coding, you can find me managing the website
-                      for Scoundrel, performing with my band Practically
-                      Paradise, or sim racing.
+                      With experience developing full-stack applications,
+                      designing modern websites, and delivering polished user
+                      interfaces, he focuses on practical solutions that
+                      streamline operations and elevate brands. Steven has built
+                      websites for businesses such as Scoundrel, Irick Images,
+                      and Sweet Sting Sugar Spa, and has developed a growing
+                      portfolio of applications including Amp Calculator,
+                      Daytrippr, and multiple front-end projects.
+                    </p>
+                    <p>
+                      I am currently completing an intensive software
+                      engineering program and continue to expand my skills in
+                      modern JavaScript frameworks, UI/UX, and backend systems.
+                    </p>
+                    <p>
+                      Outside of engineering, I am the vocalist of the pop-rock
+                      band Practically Paradise and bring the same creativity,
+                      discipline, and high-performance mindset from music into
+                      my work. I blend design intuition with technical precision
+                      to create work that is both functional and beautiful.
                     </p>
                     <p>Based in Greenville, SC.</p>
                   </motion.div>
