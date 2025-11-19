@@ -204,12 +204,12 @@ function App() {
     {
       title: "WTWR",
       description: "Weather app with React, Context API, and OpenWeatherMap",
-      image: "./src/assets/WTWR.png",
+      image: "./src/assets/WTWR.svg",
     },
     {
       title: "Amp Calculator",
       description: "React Native app with TypeScript",
-      image: "./src/assets/AMP.png",
+      image: "./src/assets/AMP.svg",
     },
     {
       title: "Irick Images",
@@ -221,7 +221,7 @@ function App() {
     {
       title: "Scoundrel Website",
       description: "Website for Michelin-star restaurant",
-      image: "./src/assets/Scoundrel.png",
+      image: "./src/assets/Scoundrel.svg",
       link: "https://scoundrelgvl.com",
     },
   ];
@@ -479,7 +479,7 @@ function App() {
                   <div className="relative aspect-square rounded-3xl overflow-hidden bg-white/80 backdrop-blur-sm border border-black/10">
                     {/* Replace this src with your actual photo */}
                     <img
-                      src="src/assets/me.jpg"
+                      src="src/assets/me.svg"
                       alt="Steven Bolin"
                       className="w-full h-full object-cover"
                     />
