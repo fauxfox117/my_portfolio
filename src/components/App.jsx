@@ -11,6 +11,11 @@ import {
 import { wrap } from "@motionone/utils";
 import "./App.css";
 
+import WTWRImage from "../assets/WTWR.svg";
+import AMPImage from "../assets/AMP.svg";
+import ScoundrelImage from "../assets/Scoundrel.svg";
+import ProfileImage from "../assets/me.svg";
+
 // Parallax Text Component
 function ParallaxText({ children, baseVelocity = 100 }) {
   const baseX = useMotionValue(0);
@@ -204,12 +209,12 @@ function App() {
     {
       title: "WTWR",
       description: "Weather app with React, Context API, and OpenWeatherMap",
-      image: "./src/assets/WTWR.svg",
+      image: WTWRImage,
     },
     {
       title: "Amp Calculator",
       description: "React Native app with TypeScript",
-      image: "./src/assets/AMP.svg",
+      image: AMPImage,
     },
     {
       title: "Irick Images",
@@ -221,7 +226,7 @@ function App() {
     {
       title: "Scoundrel Website",
       description: "Website for Michelin-star restaurant",
-      image: "./src/assets/Scoundrel.svg",
+      image: ScoundrelImage,
       link: "https://scoundrelgvl.com",
     },
   ];
@@ -479,7 +484,7 @@ function App() {
                   <div className="relative aspect-square rounded-3xl overflow-hidden bg-white/80 backdrop-blur-sm border border-black/10">
                     {/* Replace this src with your actual photo */}
                     <img
-                      src="src/assets/me.svg"
+                      src={ProfileImage}
                       alt="Steven Bolin"
                       className="w-full h-full object-cover"
                     />
