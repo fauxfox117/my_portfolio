@@ -1,70 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useVelocity,
-  useAnimationFrame,
-  useMotionValue,
-} from "framer-motion";
-import { wrap } from "@motionone/utils";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import "./App.css";
 
 import WTWRImage from "../assets/WTWR.png";
 import AMPImage from "../assets/AMP.png";
 import ScoundrelImage from "../assets/Scoundrel.png";
 import ProfileImage from "../assets/me.png";
-
-// Parallax Text Component
-function ParallaxText({ children, baseVelocity = 100 }) {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
-
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-
-  const directionFactor = useRef(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
-
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-    baseX.set(baseX.get() + moveBy);
-  });
-
-  return (
-    <div className="overflow-hidden whitespace-nowrap flex">
-      <motion.div className="flex whitespace-nowrap" style={{ x }}>
-        <span className="block mr-8 text-7xl md:text-8xl font-bold">
-          {children}
-        </span>
-        <span className="block mr-8 text-7xl md:text-8xl font-bold">
-          {children}
-        </span>
-        <span className="block mr-8 text-7xl md:text-8xl font-bold">
-          {children}
-        </span>
-        <span className="block mr-8 text-7xl md:text-8xl font-bold">
-          {children}
-        </span>
-      </motion.div>
-    </div>
-  );
-}
+import SqSpCircle from "../assets/CircleTier_Member_Black-Gold.png";
 
 // Project Card Component with Hover Effect
 function ProjectCard({ title, description, image, link }) {
@@ -482,13 +425,11 @@ function App() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="relative aspect-square rounded-3xl overflow-hidden bg-white/80 backdrop-blur-sm border border-black/10">
-                    {/* Replace this src with your actual photo */}
                     <img
                       src={ProfileImage}
                       alt="Steven Bolin"
                       className="w-full h-full object-cover"
                     />
-                    {/* Placeholder overlay - remove when you add your photo */}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/5">
                       <p className="text-black/40 text-sm font-mono"></p>
                     </div>
@@ -575,6 +516,8 @@ function App() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Footer - Outside the grid container */}
             <motion.div
               className="absolute bottom-8 left-8 text-sm text-black/40"
               initial={{ opacity: 0 }}
@@ -582,6 +525,29 @@ function App() {
               transition={{ delay: 1 }}
             >
               <p>Greenville SC</p>
+            </motion.div>
+
+            {/* Center - Clickable Squarespace Circle */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              <motion.a
+                href="https://pros.squarespace.com/blog/work-with-a-circle-member"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="block"
+              >
+                <img
+                  src={SqSpCircle}
+                  alt="Squarespace Circle Member"
+                  className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300"
+                />
+              </motion.a>
             </motion.div>
 
             <motion.div
